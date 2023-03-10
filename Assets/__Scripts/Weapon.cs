@@ -35,6 +35,7 @@ public class WeaponDefinition
     public float continuousDamage = 0; // Damage per second (Laser)
     public float delayBetweenShots = 0;
     public float velocity = 20; // Speed of projectiles
+    public Transform target; //Missile Target
 }
 public class Weapon : MonoBehaviour
 {
@@ -144,7 +145,24 @@ public class Weapon : MonoBehaviour
                 p.transform.rotation = Quaternion.AngleAxis(-10, Vector3.back);
                 p.vel = p.transform.rotation * vel;
                 break;
+
+            case eWeaponType.missile:
+                p = MakeProjectile();
+                p.GetClosestEnemy();
+                p.vel = p.transform.rotation * vel;
+                break;
         }
+    }
+
+    public Transform GetClosestEnemy()
+    {
+        Transform target = GameObject.FindGameObjectWithTag("Enemy").transform;
+        if (target != null)
+        {
+            Vector3 direction = target.position - transform.position;
+            transform.up = Vector3.MoveTowards(transform.up, direction, 1 * Time.deltaTime);
+        }
+
     }
 
     public ProjectileHero MakeProjectile()

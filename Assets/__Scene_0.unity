@@ -554,6 +554,16 @@ MonoBehaviour:
     continuousDamage: 0
     delayBetweenShots: 0.25
     velocity: 50
+  - type: 4
+    letter: M
+    color: {r: 0.972549, g: 0.15131103, b: 0.019607825, a: 1}
+    weaponModelPrefab: {fileID: 1899541879965282, guid: 59a4640edad59f94a87c1d235355cb6a,
+      type: 3}
+    projectileColor: {r: 0.96862745, g: 0.07462888, b: 0.023529429, a: 1}
+    damageOnHit: 0
+    continuousDamage: 0
+    delayBetweenShots: 0
+    velocity: 0
   - type: 6
     letter: 0
     color: {r: 0.08235294, g: 0.9725491, b: 0.019607844, a: 1}
