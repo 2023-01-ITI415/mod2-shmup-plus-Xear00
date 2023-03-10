@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [RequireComponent(typeof(BoundsCheck))]
 public class Enemy : MonoBehaviour
@@ -13,6 +14,8 @@ public class Enemy : MonoBehaviour
     public int score = 100; // Points earned for destroying this
     public float showDamageDuration = 0.1f; // # seconds to show damage
     public float powerUpDropChance = 1f; // Chance to drop a power-up
+    public TextMeshProUGUI countText;
+    public Main refScore;
 
     [Header("Set Dynamically: Enemy")]
     public Color[] originalColors;
@@ -40,6 +43,8 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         bndCheck = GetComponent<BoundsCheck>();
+        countText = GameObject.Find("Score Counter").GetComponent<TextMeshProUGUI>();
+        refScore = GameObject.Find("_MainCamera").GetComponent<Main>();
         // Get materials and colors for this GameObject and its children
         materials = Utils.GetAllMaterials(gameObject);
         originalColors = new Color[materials.Length];
@@ -69,6 +74,11 @@ public class Enemy : MonoBehaviour
         tempPos.y -= speed * Time.deltaTime;
         pos = tempPos;
     }
+    public void SetCountText()
+    {
+        countText.text = "Score: " + refScore.count.ToString();
+        //finalScore.text = count.ToString(); Basis for a final Scoreboard
+    }
 
     private void OnCollisionEnter(Collision coll)
     {
@@ -91,6 +101,8 @@ public class Enemy : MonoBehaviour
                         calledShipDestroyed = true;
                         Main.SHIP_DESTROYED(this);
                     }
+                    refScore.count = refScore.count + score;
+                    SetCountText();
                     Destroy(this.gameObject);
                 }
             }

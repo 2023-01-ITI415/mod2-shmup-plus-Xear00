@@ -14,6 +14,7 @@ public class Hero : MonoBehaviour {
     public GameObject projectilePrefab;
     public float projectileSpeed = 40;
     public Weapon[] weapons;
+    
 
     [Header("Dynamic")] [Range(0,4)]
     
@@ -172,4 +173,6 @@ public class Hero : MonoBehaviour {
             w.SetType(eWeaponType.none);
         }
     }
+    
+    
 }

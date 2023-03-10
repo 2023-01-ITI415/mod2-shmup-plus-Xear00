@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Main : MonoBehaviour {
 
@@ -14,6 +15,10 @@ public class Main : MonoBehaviour {
     public float enemySpawnPerSecond = 0.5f; // # Enemies/second
     public float enemyInsetDefault = 1.5f; // Padding for position
     public float gameRestartDelay = 2;
+    public int count;
+
+    public TextMeshProUGUI countText;
+
 
     public WeaponDefinition[] weaponDefinitions;
     public GameObject prefabPowerUp;
@@ -116,6 +121,7 @@ public class Main : MonoBehaviour {
         S.DelayedRestart();
     }
 
+    
 
     ///<summary>
     ///Static function that gets a WeaponDefinition from the WEAP_DICT static
@@ -124,7 +130,7 @@ public class Main : MonoBehaviour {
     /// <returns>The WeaponDefinition or, if there is no WeaponDefinition with
     /// the WeaponType passed in, returns a new WeaponDefinition with a
     /// WeaponType of none..</returns>
-    /// <param name="wt">The WeaponType of the desired WeaponDefinition</param>
+    // <param name="wt">The WeaponType of the desired WeaponDefinition</param>
     static public WeaponDefinition GET_WEAPON_DEFINITION(eWeaponType wt)
     {
         // Check to make sure that the key exists in the Dictionary

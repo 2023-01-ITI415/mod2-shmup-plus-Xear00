@@ -107,6 +107,7 @@ MonoBehaviour:
   score: 100
   showDamageDuration: 0.1
   powerUpDropChance: 0.25
+  countText: {fileID: 0}
   originalColors: []
   materials: []
   showingDamage: 0
