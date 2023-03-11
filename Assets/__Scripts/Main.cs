@@ -16,9 +16,10 @@ public class Main : MonoBehaviour {
     public float enemyInsetDefault = 1.5f; // Padding for position
     public float gameRestartDelay = 2;
     public int count;
+    public int highScore;
 
     public TextMeshProUGUI countText;
-
+    public TextMeshProUGUI highScoreText;
 
     public WeaponDefinition[] weaponDefinitions;
     public GameObject prefabPowerUp;
@@ -70,6 +71,9 @@ public class Main : MonoBehaviour {
         {
             WEAP_DICT[def.type] = def;
         }
+
+        highScore = PlayerPrefs.GetInt("High Score", 0);
+        highScoreText.text = "High Score: " + highScore;
     }
 
     public void SpawnEnemy()
@@ -113,6 +117,12 @@ public class Main : MonoBehaviour {
     public void Restart()
     {
         // Reload _Scene_0 to restart the game
+        highScoreText.text = "High Score: " + highScore;
+    if (count > highScore)
+    {
+        highScoreText.text = "High Score: " + count;
+        PlayerPrefs.SetInt("High Score", count);
+    }
         SceneManager.LoadScene("__Scene_0");
     }
 
